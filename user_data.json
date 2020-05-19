@@ -1,0 +1,28 @@
+{
+    "Users": [
+        {
+            "user1": {
+                "userId": "Shiv ank",
+                "password": "45455"
+            }
+        },
+        {
+            "user2": {
+                "userId": "ajay",
+                "password": "3434"
+            }
+        },
+        {
+            "user3": {
+                "userId": "rajesh",
+                "password": "43434"
+            }
+        },
+        {
+            "user4": {
+                "userId": "svhink",
+                "password": "34343"
+            }
+        }
+    ]
+}
