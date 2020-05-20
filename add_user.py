@@ -1,49 +1,45 @@
 import json
-from userRegister import ToBeRegisteredUser
+from user_info import UserInfo
 
-def writeFile(data):
-    with open('user_data.json','w+',encoding='utf-8') as f:
-        json.dump(data,f,indent=4)
+class AddUser():
+    def __init__(self,userId,password):
+        self.userId=userId
+        self.password=password
 
-def append_json_to_list(users_list,new_user_data):
-    #convert  json_object to list 
-    #Add json_objet_list to users_list
-    length_of_list = len(users_list)
-    json_object={
-        "user"+str(length_of_list+1):new_user_data
-    }
-    return (users_list + [json_object])
+    def start_registering(self):
+        #recievng user info in json form
+        new_user = self.getUserInfo()
+        user_list_append_new_user = self.append_json_to_list(self.readFile(),new_user)
+        self.writeFile(user_list_append_new_user)
 
-def getUserInfo():
-    new_user = ToBeRegisteredUser(input('userId     '),input('password      '))
-    data=readFile()
-    return new_user.getUserIdPassword()
+    def writeFile(self,data):
+        file_to_be_written = {
+            "Users":data
+            }
+        with open('user_data.json','w+',encoding='utf-8') as f:
+            json.dump(file_to_be_written,f,indent=4)
+        f.close()
+        return True
 
-def readFile():
-    with open('user_data.json') as f:
-        data=json.load(f)
+    def append_json_to_list(self,users_list,new_user_data):
+        #convert  json_object to list 
+        #Add json_objet_list to users_list
+        length_of_list = len(users_list)
+        json_object={
+            "user"+str(length_of_list+1):new_user_data
+        }
+        return (users_list + [json_object])
 
-    return data
+    def getUserInfo(self):
+        new_user = UserInfo(self.userId,self.password)
+        return new_user.getUserIdPassword()
 
-def start():
-    data=readFile()
-    new_user = getUserInfo()
-    value=check_existance_of_user(new_user,data['Users'])
-    if(value==False):
-        data["Users"]=append_json_to_list(data["Users"],new_user)
-        writeFile(data)
-    
-def check_existance_of_user(userData,users_list):
-    value=False
-    for i in range(len(users_list)):
-        if(userData['userId']==users_list[i]['user'+str(i+1)]['userId']):
-            print('userId already exist')
-            value=True
-            break
-    return value
-
-if __name__=="__main__":
-    start()
+    def readFile(self):
+        with open('user_data.json') as f:
+            data=json.load(f)
+        f.close()
+        return data["Users"]
+        
 
 
 

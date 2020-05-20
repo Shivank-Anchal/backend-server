@@ -1,4 +1,4 @@
-class ToBeRegisteredUser:
+class UserInfo:
     def __init__(self,userId,password):
         self.userId=userId
         self.password=password
