@@ -49,7 +49,7 @@ def post_request():
             return jsonify({
                 "response":"user already exists",
                 "Existence_of_user":True,
-                "Token": token
+                "token": token
             })
 
 
