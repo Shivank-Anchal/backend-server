@@ -1,6 +1,7 @@
 import json
 from createjwt import CreateJwt
 from user_info import UserInfo
+from UserData import UserData
 
 class Login():
     def __init__(self,userId,password):
@@ -26,10 +27,11 @@ class Login():
                 else:
                     self.password_match=False
 
-    def get_jwt(self):
+    def get_jwt(self,user_position_in_list):
         if(self.password_match):
-            user_info = UserInfo(self.userId,self.password)
-            jwt = CreateJwt(user_info.getUserIdPassword())
+            user_data = UserData(user_position_in_list)
+            print('===========>>>>',user_data.getUserData())
+            jwt = CreateJwt(user_data.getUserData())
             return jwt.jwt_created()
 
         

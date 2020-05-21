@@ -15,7 +15,8 @@
         {
             "user3": {
                 "userId": "rajesh",
-                "password": "45454"
+                "password": "45454",
+                "admin":true
             }
         },
         {
@@ -83,11 +84,19 @@
                 "userId": "lol",
                 "password": "33434"
             }
-        },{
+        },
+        {
             "user15": {
                 "userId": "prachi",
                 "password": "123456"
             }
+        },
+        {
+            "user16": {
+                "userId": "deepak",
+                "password": "deepak@1234"
+            }
         }
+
     ]
 }

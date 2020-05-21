@@ -60,11 +60,17 @@ def userLogin(user):
     userId = user.userId
     password = user.password
     user_enquiry = Enquire(userId)
-    if(user_enquiry.check_existence_of_user_in_the_register()):
+    if(user_enquiry.existence_of_user_in_the_register()==False):
+         return {
+            'result':'login unsuccessful',
+            'reason':'userId does not exists'
+        }
+    else:
         login = Login(userId,password)
         login.compare_password()
+        index = user_enquiry.existence_of_user_in_the_register()
         if(login.does_password_matches()):
-            token_in_bytes=login.get_jwt()
+            token_in_bytes=login.get_jwt(index)
             token_in_string=convert_bytes_to_string(token_in_bytes)
             return {
                 'result':'login successful',
@@ -75,11 +81,6 @@ def userLogin(user):
                 'result':'login unsuccessful',
                 'reason':'incorrect password'
             }
-    else:
-        return {
-            'result':'login unsuccessful',
-            'reason':'userId does not exists'
-        }
     
     
 
@@ -110,11 +111,11 @@ def userSignUp(user):
             }
 
 def sendJWTToken():
-    pass
+    pass 
 
 def convert_bytes_to_string(byte_data):
     return byte_data.decode('utf-8')
 
 
 if __name__=='__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
