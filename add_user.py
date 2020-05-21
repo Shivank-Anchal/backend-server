@@ -10,7 +10,7 @@ class AddUser():
         #recievng user info in json form
         new_user = self.getUserInfo()
         user_list_append_new_user = self.append_json_to_list(self.readFile(),new_user)
-        self.writeFile(user_list_append_new_user)
+        return self.writeFile(user_list_append_new_user)
 
     def writeFile(self,data):
         file_to_be_written = {
